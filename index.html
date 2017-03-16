@@ -1,13 +1,15 @@
 <html>
-	<head> 
+	<head>
 		<title> Flapper News </title>
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+    <script src="app.js"></script>
 	</head>
 
 	<body ng-app="flapperNews" ng-controller="MainCtrl as ctrl">
 		<div> {{ctrl.test}} </div>
+    <div ng-repeat="post in ctrl.posts">
+      {{post.title}} - upvotes: {{post.upvotes}}
+    </div>
 	</body>
-
-	<script src="app.js"></script>
 
 </html>
