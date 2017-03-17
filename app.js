@@ -1,5 +1,17 @@
-var app = angular.module('flapperNews', [])
+var app = angular.module('flapperNews', ['ui.router'])
 	
+  // Config
+  .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
+    $stateProvider.state('home', {
+      url: '/home',
+      templateUrl: '/home.html',
+      controller: 'MainCtrl'
+    })
+
+    $urlRouterProvider.otherwise('/home');
+  }])
+
+  // Factory
   .factory('posts', [function() {
     var data = {
       posts: [
@@ -14,6 +26,8 @@ var app = angular.module('flapperNews', [])
     return data
   }])
 
+
+  // Controller
   .controller('MainCtrl', ['posts', function(posts) {
 		var self = this;
     
