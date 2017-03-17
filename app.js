@@ -8,10 +8,10 @@ var app = angular.module('flapperNews', ['ui.router'])
         templateUrl: '/home.html',
         controller: 'MainCtrl'
       })
-      .state('post', {
-        url: '/post/{id}',
-        templateUrl: '/home.html',
-        controller: 'MainCtrl'   
+      .state('posts', {
+        url: '/posts/{id}',
+        templateUrl: '/posts.html',
+        controller: 'PostsCtrl'
       })
 
     $urlRouterProvider.otherwise('/home');
@@ -21,13 +21,13 @@ var app = angular.module('flapperNews', ['ui.router'])
   .factory('posts', [function() {
     var data = {
       posts: [
-        {title: 'post 1', link: 'adsf', upvotes: 5},
-        {title: 'post 2', link: 'fasdf', upvotes: 2},
-        {title: 'post 3', link: 'fasd', upvotes: 15},
-        {title: 'post 4', link: '', upvotes: 9},
-        {title: 'post 5', link: '', upvotes: 4}
+        {title: 'post 1', link: 'adsf', upvotes: 5, comments: [{author: 'A', body: 'dsa', upvotes:4}, {author: 'A', body: 'dsa', upvotes:4}]},
+        {title: 'post 2', link: 'fasdf', upvotes: 2, comments: [{author: 'A', body: 'dsa', upvotes:2}]},
+        {title: 'post 3', link: 'fasd', upvotes: 15, comments: [{author: 'A', body: 'dsa', upvotes:5}]},
+        {title: 'post 4', link: '', upvotes: 9, comments: [{author: 'A', body: 'dsa', upvotes:5 }]},
+        {title: 'post 5', link: '', upvotes: 4, comments: [{author: 'A', body: 'dsa', upvotes:5}]}
       ]
-    }
+    };
 
     return data
   }])
@@ -50,4 +50,9 @@ var app = angular.module('flapperNews', ['ui.router'])
       post.upvotes += 1;
     };
 
-	}]);
+	}])
+
+  .controller('PostsCtrl', ['$stateParams', 'posts', function ($stateParams, posts) {
+    var self = this;
+    self.comments = posts.posts[$stateParams.id].comments;
+  }]);
