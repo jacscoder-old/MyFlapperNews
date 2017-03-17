@@ -44,15 +44,27 @@ var app = angular.module('flapperNews', ['ui.router'])
       self.posts.push({title: self.title, link: self.link, upvotes: 4});
       self.title = '';
       self.link = ''
-    };
+    }
 
     self.addVote = function(post) {
       post.upvotes += 1;
-    };
+    }
 
 	}])
 
   .controller('PostsCtrl', ['$stateParams', 'posts', function ($stateParams, posts) {
     var self = this;
+    
     self.comments = posts.posts[$stateParams.id].comments;
+
+    self.addComment = function() {
+      if(self.comment === '') { return; }
+      posts.posts[$stateParams.id].comments.push({
+        author: 'user',
+        body: self.comment,
+        upvotes: 1
+      })
+      self.comment = '';
+    }
+
   }]);
