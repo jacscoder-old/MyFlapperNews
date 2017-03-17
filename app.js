@@ -15,4 +15,9 @@ var app = angular.module('flapperNews', [])
       self.posts.push({title: self.title, upvotes: 4});
       self.title = '';
     };
+
+    self.addVote = function(post) {
+      post.upvotes += 1;
+    };
+
 	}]);
