@@ -9,4 +9,7 @@ var app = angular.module('flapperNews', [])
       {title: 'post 4', upvotes: 9},
       {title: 'post 5', upvotes: 4}
     ];
+    self.incrementPost = function() {
+      self.posts.push({title: self.title, upvotes: 4});
+    };
 	}]);
