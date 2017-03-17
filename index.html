@@ -1,18 +1,17 @@
 <html>
 	<head>
-		<title> Flapper News </title>
+		<title> FlapperNews </title>
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
     <script src="app.js"></script>
 	</head>
 
 	<body ng-app="flapperNews" ng-controller="MainCtrl as ctrl">
-		<div> {{ctrl.test}} </div>
     <div ng-repeat="post in ctrl.posts | orderBy: '-upvotes'">
       {{post.title}} - upvotes: {{post.upvotes}}
     </div>
-    <form ng-submit="ctrl.incrementPost()">
+    <form ng-submit="ctrl.addPost()">
       <input type="text" ng-model="ctrl.title"></input>
-      <button type="submit"> Add </button>
+      <button type="submit"> Post </button>
     </form>
 
 	</body>
